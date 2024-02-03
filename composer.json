@@ -1,0 +1,41 @@
+{
+    "name": "sudorealm/alien-select",
+    "description": ":package_description",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stantzouris Thanos",
+            "email": "stantzouris.thanos@gmail.com",
+            "homepage": "https://sudorealm.com"
+        }
+    ],
+    "homepage": "https://github.com/sudorealm/alien-select",
+    "keywords": ["Laravel", "AlienSelect", "Livewire", "smart select", "livewire select2"],
+    "require": {
+        "illuminate/support": "^10.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sudorealm\\AlienSelect\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sudorealm\\AlienSelect\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sudorealm\\AlienSelect\\AlienSelectServiceProvider"
+            ],
+            "aliases": {
+                "AlienSelect": "Sudorealm\\AlienSelect\\Facades\\AlienSelect"
+            }
+        }
+    }
+}
