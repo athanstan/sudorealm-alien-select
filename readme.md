@@ -1,11 +1,14 @@
+<p align="center">
+    <a href="#">
+        <img src="https://poser.pugx.org/livewire/livewire/license.svg" alt="License">
+    </a>
+</p>
+
 # AlienSelect
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
+AlienSelect is a dynamic Livewire component designed for selecting related models in a flexible and user-friendly manner. It's perfect for tagging systems, selecting categories, or any scenario where you need to associate one model with another.
 
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+Take a look at [contributing.md](contributing.md) to see a to do list.
 
 ## Installation
 
@@ -15,11 +18,92 @@ Via Composer
 composer require sudorealm/alien-select
 ```
 
-## Usage
+## Basic Usage
 
-## Change log
+To use the AlienSelect component, simply include it in your Blade files with the necessary attributes:
 
-Please see the [changelog](changelog.md) for more information on what has changed recently.
+```html
+<livewire:alien-select
+  modelClass="YourModelClass"
+  relation="yourRelationMethod"
+  parentModel="YourParentModelClass"
+  :parentModelId="$yourParentModelInstance->id"
+  attribute="yourModelAttribute"
+  shouldCache
+  byUser
+/>
+```
+
+| Attribute     | Description                                                                        | Example   | Required |
+| ------------- | ---------------------------------------------------------------------------------- | --------- | -------- |
+| modelClass    | The class name of the model you want to select options from.                       | tag       | ✅       |
+| relation      | The method name of the relation on the parent model.                               | tags      | ❌       |
+| parentModel   | The class name of the parent model.                                                | post      | ✅       |
+| parentModelId | The ID of the parent model instance to associate the selected options with         | $post->id | ✅       |
+| attribute     | The attribute of the model that should be displayed to the user                    | name      | ❌       |
+| shouldCache   | Determines if the selected options should be cached.                               | boolean   | ❌       |
+| byUser        | Determines if the selections are restricted to options created by the current user | boolean   | ❌       |
+
+## Examples
+
+I am going to be using the simple example of a post and tags of a post.
+
+To effectively utilize the **AlienSelect** component for selecting tags for a post, you need to ensure your models are correctly set up to reflect a "many-to-many" relationship. For a Post model to have the capability to be associated with multiple Tag models, and vice versa, you should define a belongsToMany relationship in both models.
+
+In your Post model, you would define a relationship method like so:
+
+```php
+public function tags()
+{
+    return $this->belongsToMany(Tag::class);
+}
+```
+
+Similarly, in your Tag model, you should set up the inverse relationship:
+
+```php
+public function posts()
+{
+    return $this->belongsToMany(Post::class);
+}
+```
+
+### Simplest case
+
+```html
+<livewire:alien-select
+  modelClass="tag"
+  parentModel="post"
+  :parentModelId="$post->id"
+/>
+```
+
+The AlienSelect component simplifies setup by guessing common settings, such as the relationship between posts and tags and the use of a tag's name. Optional features like shouldCache for performance and byUser for user-specific selections enhance its functionality with minimal configuration required.
+
+### Not so simple case
+
+Imagine your blog posts can have two kinds of tags from the same Tag model: regular tags for basic labels and "superTags" for special categories. Each tag also belongs to a specific user. When using the AlienSelect component, you want to make sure users see and choose only their own tags.
+
+```html
+<livewire:alien-select
+  modelClass="tag"
+  relation="superTags"
+  parentModel="post"
+  :parentModelId="$post->id"
+  attribute="title"
+  shouldCache
+  byUser
+/>
+```
+
+## Advanced Configuration (🔮 Soon)
+
+- `OPTION_LIMIT`: Controls the number of selected items that are visible within the dropdown at any given time. The default limit is set to 5. This helps in maintaining the dropdown's usability and visual appeal, especially when dealing with a large number of selections. (Soon to be available for modification via config file...)
+
+## Change log Please
+
+see the [changelog](changelog.md) for more information on what has changed
+recently.
 
 ## Testing
 
@@ -33,25 +117,16 @@ Please see [contributing.md](contributing.md) for details and a todolist.
 
 ## Security
 
-If you discover any security related issues, please email author@email.com instead of using the issue tracker.
+If you discover any security or perfomance related issues, please email `stantzouris.thanos@gmail.com` instead of using the issue tracker.
 
 ## Credits
 
-- [Author Name][link-author]
-- [All Contributors][link-contributors]
+- [Stantzouris Thanos (d3adr1nger)](https://sudorealm.com/blog/profile/d3ad-r1nger)
+<!-- - [All Contributors][link-contributors] -->
 
 ## License
 
 MIT. Please see the [license file](license.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/sudorealm/alien-select.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/sudorealm/alien-select.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/sudorealm/alien-select/master.svg?style=flat-square
-[ico-styleci]: https://styleci.io/repos/12345678/shield
-
-[link-packagist]: https://packagist.org/packages/sudorealm/alien-select
-[link-downloads]: https://packagist.org/packages/sudorealm/alien-select
-[link-travis]: https://travis-ci.org/sudorealm/alien-select
-[link-styleci]: https://styleci.io/repos/12345678
-[link-author]: https://github.com/sudorealm
+[link-author]: https://sudorealm.com/blog/profile/d3ad-r1nger
 [link-contributors]: ../../contributors
