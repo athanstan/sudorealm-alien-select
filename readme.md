@@ -4,11 +4,25 @@
     </a>
 </p>
 
+<p align="center">
+  <img src="alien-select-usage.gif" alt="Sudorealm Alien Select component usage" />
+</p>
+
 # AlienSelect
 
 AlienSelect is a dynamic Livewire component designed for selecting related models in a flexible and user-friendly manner. It's perfect for tagging systems, selecting categories, or any scenario where you need to associate one model with another.
 
 Take a look at [contributing.md](contributing.md) to see a to do list.
+
+## Requirements
+
+This package uses:
+
+- livewire/livewire (https://laravel-livewire.com/) Version 2.x for now!
+- TailwindCSS (https://tailwindcss.com/)
+- AlpineJs (https://alpinejs.dev/)
+
+Please make sure you include all these dependencies before using this component.
 
 ## Installation
 
