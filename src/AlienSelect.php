@@ -60,7 +60,7 @@ class AlienSelect extends Component
 
     public function updatedSearchTerm($value): void
     {
-        $this->emit('optionsUpdated', $this->options->count());
+        $this->dispatch('optionsUpdated', $this->options->count());
     }
 
     public function selectOption($id, $value)
@@ -85,11 +85,11 @@ class AlienSelect extends Component
                 ->select('id', $this->attribute)
                 ->when(
                     strlen($this->searchTerm) > 2,
-                    fn ($q) => $q->where($this->attribute, 'like', '%' . $this->searchTerm . '%')
+                    fn($q) => $q->where($this->attribute, 'like', '%' . $this->searchTerm . '%')
                 )
                 ->when(
                     $this->byUser,
-                    fn ($q) => $q->where('user_id', auth()->id())
+                    fn($q) => $q->where('user_id', auth()->id())
                 )
                 ->orderBy('id', 'desc')
                 ->limit(self::OPTION_LIMIT)
@@ -148,7 +148,7 @@ class AlienSelect extends Component
     private function updateSelectedOptions(): void
     {
         $this->selectedOptionIds = array_keys($this->selectedOptions);
-        $this->emitUp(
+        $this->dispatch(
             'selectionUpdated',
             $this->selectedOptionIds,
             $this->parentModel,

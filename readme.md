@@ -18,7 +18,7 @@ Take a look at [contributing.md](contributing.md) to see a to do list.
 
 This package uses:
 
-- livewire/livewire (https://laravel-livewire.com/) Version 2.x for now!
+- livewire/livewire (https://laravel-livewire.com/) Version 3.x! 👾
 - TailwindCSS (https://tailwindcss.com/)
 - AlpineJs (https://alpinejs.dev/)
 
@@ -135,8 +135,9 @@ If you discover any security or perfomance related issues, please email `stantzo
 
 ## Credits
 
-- [Stantzouris Thanos (d3adr1nger)](https://sudorealm.com/blog/profile/d3ad-r1nger)
 <!-- - [All Contributors][link-contributors] -->
+
+- [Stantzouris Thanos (d3adr1nger)](https://sudorealm.com/blog/profile/d3ad-r1nger)
 
 ## License
 

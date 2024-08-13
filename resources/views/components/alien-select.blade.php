@@ -1,7 +1,7 @@
 <div x-data="alienDropdown">
     <div class="relative">
         <input type="text" @focus="showOptions=true" @click.outside="showOptions=false"
-            @keydown.down.prevent="selectNext" wire:model.debounce.300ms="searchTerm"
+            @keydown.down.prevent="selectNext" wire:model.live.debounce.300ms="searchTerm"
             class="block w-full min-w-0 flex-grow rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             placeholder="Search {{ $relation }}...">
 
