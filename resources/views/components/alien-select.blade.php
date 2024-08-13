@@ -36,7 +36,7 @@
     </div>
 
     <script type="text/javascript">
-        document.addEventListener('livewire:load', () => {
+        document.addEventListener('livewire:init', () => {
             Alpine.data('alienDropdown', () => ({
                 showOptions: false,
                 optionCount: 5,
